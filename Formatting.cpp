@@ -8,6 +8,12 @@
 #include <cassert>
 
 #include "Formatting.h"
+#include <iostream>
+using std :: cout;
+using std :: string;
+using std:: cout;
+using std:: cin;
+using std :: endl;
 
 // Returns CSV header as a string
 //
@@ -17,7 +23,8 @@
 //      CSV header
 string CSVHeader() {
 
-    return "";
+
+    return "firstName, lastName, Age, Height, Nationality";
 }
 
 // Converts one JSON formatted line to CSV, returning the CSV
@@ -28,6 +35,14 @@ string CSVHeader() {
 // Returns:
 //      CSV formatted line
 string FormatAsCSV(string json) {
+
+    string firstName;
+    string lastName;
+    int age;
+    int height;
+    string nationality;
+
+
 
     return "";
 }
