@@ -16,7 +16,7 @@
 // Returns:
 //      CSV header
 string CSVHeader() {
-    assert(false);
+
     return "";
 }
 
@@ -28,7 +28,7 @@ string CSVHeader() {
 // Returns:
 //      CSV formatted line
 string FormatAsCSV(string json) {
-    assert(false);
+
     return "";
 }
 
@@ -41,6 +41,6 @@ string FormatAsCSV(string json) {
 // Returns:
 //      age as string, or empty if age doesn't appear
 string GetAge(string json) {
-    assert(false);
+
     return "";
 }
