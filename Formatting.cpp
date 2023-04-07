@@ -36,27 +36,45 @@ string CSVHeader() {
 //      CSV formatted line
 string FormatAsCSV(string json) {
 
-    string firstN = ":";
 
-    int fN = json.find(firstN);
+    string firstName;
+    string lastName;
+    string age;
+    string nationality;
+    string comma = ",";
+    string format;
+
+    string fName = "FirstName";
+
     int length = json.length();
+    size_t found = json.find(fName);
 
+    if (found!=std::string::npos) {
+        for (int i = found + 12; i < length; i++){
+            if (!isalpha(json.at(i)) && json.at(i) != '"') {
+                continue;
+            }
 
-    if (fN == 13) {
+            else if (isalpha(json.at(i))) {
 
-        for (int i = 15; i < 25; i++) {
+                firstName += json.at(i);
 
-            if (isalpha(json.at(i)) && isalpha(json.at(i)) != '"') {
-                cout << json.at(i);
-            } else {
+            }
+            else {
                 break;
             }
         }
     }
 
-    cout << ",";
+    if (!found) {
+        firstName = " ";
+    }
 
-    return "";
+// Pick up from here: do the same thing for lastName, age, and nationality as I did for the code above
+
+    format = firstName + comma + lastName + comma + age + comma + nationality;
+
+    return format;
 }
 
 // Return the age value stored in a JSON
@@ -91,7 +109,7 @@ string GetAge(string json) {
 
 
             }
-            
+
             else {
                 break;
             }
