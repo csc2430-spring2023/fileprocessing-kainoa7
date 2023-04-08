@@ -40,6 +40,7 @@ string FormatAsCSV(string json) {
     string firstName;
     string lastName;
     string age;
+    string height;
     string nationality;
     string comma = ",";
     string format;
@@ -47,10 +48,10 @@ string FormatAsCSV(string json) {
     string fName = "FirstName";
 
     int length = json.length();
-    size_t found = json.find(fName);
+    size_t foundFirst = json.find(fName);
 
-    if (found!=std::string::npos) {
-        for (int i = found + 12; i < length; i++){
+    if (foundFirst!=std::string::npos) {
+        for (int i = foundFirst + 12; i < length; i++){
             if (!isalpha(json.at(i)) && json.at(i) != '"') {
                 continue;
             }
@@ -66,13 +67,73 @@ string FormatAsCSV(string json) {
         }
     }
 
-    if (!found) {
-        firstName = " ";
+    if (!foundFirst) {
+        firstName = "";
+    } //this finds the first name
+
+// Pick up from here: do the same thing for lastName, age, and nationality as I did for the code above *checkpoint
+
+    string lName = "LastName";
+    size_t foundLast = json.find(lName);
+
+    if (foundLast!=std::string::npos) {
+        for (int i = foundLast + 11; i < length; i++){
+            if (!isalpha(json.at(i)) && json.at(i) != '"') {
+                continue;
+
+            }
+
+            else if (isalpha(json.at(i))) {
+
+                lastName += json.at(i);
+
+            }
+
+            else {
+                break;
+            }
+
+        }
+
     }
 
-// Pick up from here: do the same thing for lastName, age, and nationality as I did for the code above
+    if (!foundLast) {
+        lastName = "";
+    }
 
-    format = firstName + comma + lastName + comma + age + comma + nationality;
+    // finding person's last name if they have one and putting it into a string. blank if it doesn't exist.
+
+    string ageNum = "Age";
+    size_t foundAge = json.find(ageNum);
+
+
+    if (foundAge!=std::string::npos) {
+        for (int i = foundAge; i < length; i++){
+            if (!isdigit(json.at(i)) && json.at(i) != ',') {
+                continue;
+
+            }
+
+            else if (isdigit(json.at(i))) {
+
+                age += json.at(i);
+
+
+            }
+
+            else {
+                break;
+            }
+
+        }
+
+
+    }
+
+    if (!foundAge) {
+        age = "";
+    }
+    format = firstName + comma + lastName + comma + age + comma + height + comma + nationality;;
 
     return format;
 }
