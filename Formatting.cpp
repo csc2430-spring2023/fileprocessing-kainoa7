@@ -3,7 +3,7 @@
 // Purpose: **<state your purpose here>
 //
 // Class: CSC 2430 Winter 2022
-// Author: **<your name goes here>
+// Author: **Kainoa Aqui
 
 #include <cassert>
 
@@ -23,8 +23,8 @@ using std :: endl;
 //      CSV header
 string CSVHeader() {
 
-
-    return "firstName, lastName, Age, Height, Nationality";
+string header = "firstName, lastName, Age, Height, Nationality";
+    return header;
 }
 
 // Converts one JSON formatted line to CSV, returning the CSV
@@ -35,7 +35,6 @@ string CSVHeader() {
 // Returns:
 //      CSV formatted line
 string FormatAsCSV(string json) {
-
 
     string firstName;
     string lastName;
@@ -57,15 +56,12 @@ string FormatAsCSV(string json) {
             }
 
             else if (isalpha(json.at(i))) {
-
                 firstName += json.at(i);
-
             }
+
             else {
                 break;
-            }
-        }
-    }
+            }}}
 
     if (!foundFirst) {
         firstName = "";
@@ -80,22 +76,15 @@ string FormatAsCSV(string json) {
         for (int i = foundLast + 11; i < length; i++){
             if (!isalpha(json.at(i)) && json.at(i) != '"') {
                 continue;
-
             }
 
             else if (isalpha(json.at(i))) {
-
                 lastName += json.at(i);
-
             }
 
             else {
                 break;
-            }
-
-        }
-
-    }
+            }}}
 
     if (!foundLast) {
         lastName = "";
@@ -111,24 +100,15 @@ string FormatAsCSV(string json) {
         for (int i = foundAge; i < length; i++){
             if (!isdigit(json.at(i)) && json.at(i) != ',') {
                 continue;
-
             }
 
             else if (isdigit(json.at(i))) {
-
                 age += json.at(i);
-
-
             }
 
             else {
                 break;
-            }
-
-        }
-
-
-    }
+            }}}
 
     if (!foundAge) {
         age = "";
@@ -143,24 +123,15 @@ string FormatAsCSV(string json) {
         for (int i = foundHeight + 8; i < length; i++){
             if (!isdigit(json.at(i)) && json.at(i) != ',') {
                 continue;
-
             }
 
             else if (isdigit(json.at(i))) {
-
                 height += json.at(i);
-
-
             }
 
             else {
                 break;
-            }
-
-        }
-
-
-    }
+            }}}
 
     if (!foundHeight) {
         height = "";
@@ -179,15 +150,12 @@ string FormatAsCSV(string json) {
             }
 
             else if (isalpha(json.at(i))) {
-
                 nationality += json.at(i);
             }
 
             else {
                 break;
-            }
-        }
-    }
+            }}}
 
     if (!foundNationality) {
         nationality = "";
@@ -210,36 +178,25 @@ string FormatAsCSV(string json) {
 //      age as string, or empty if age doesn't appear
 string GetAge(string json) {
 
-
     string age = "Age";
     string personAge;
 
-
     int length = json.length();
     size_t found = json.find(age);
-
 
     if (found!=std::string::npos) {
         for (int i = found; i < length; i++){
             if (!isdigit(json.at(i)) && json.at(i) != ' ') {
                 continue;
-
             }
 
             else if (isdigit(json.at(i))) {
-
                 personAge += json.at(i);
-
-
             }
 
             else {
                 break;
-            }
-
-        }
-
-    }
+            }}}
 
     return personAge;
 }
