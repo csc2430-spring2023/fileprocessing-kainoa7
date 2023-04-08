@@ -29,7 +29,10 @@ using std :: ofstream;
 // Returns:
 //      nothing
 
-void ProcessFile(string inputFileName, string outputFileName);
+void ProcessFile() {
+
+
+}
 
 void ProcessFiles() {
     string inputFileName;
@@ -37,16 +40,15 @@ void ProcessFiles() {
     bool inputDone = false;
 
     while (!inputDone) {
-        cout << "Enter input file name or blank to quit: ";
+        cout << "Input File Name: ";
         getline(cin, inputFileName);
         if (inputFileName == "") {
-            inputDone = true;
             break;
         }
 
-        cout << endl;
 
-        cout << "Enter output file name: "  ;
+
+        cout << "Output File Name: "  ;
         getline(cin, outputFileName);
 
         ifstream inputFile(inputFileName);
@@ -54,6 +56,7 @@ void ProcessFiles() {
         if (!inputFile.is_open()) {
 
             cout << "Could not open file: " << inputFileName;
+            cout << endl;
             continue;
 
         }
@@ -61,8 +64,11 @@ void ProcessFiles() {
         ofstream outputFile(outputFileName);
         if (!outputFile.is_open()) {
             cout << "Could not open file: " << outputFileName;
+            cout << endl;
             continue;
         }
+
+
 
 
 
@@ -75,5 +81,5 @@ void ProcessFiles() {
 
 }
 
-void ProcessFile(string inputFileName, string outputFileName);
+
 
