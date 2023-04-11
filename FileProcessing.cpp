@@ -70,14 +70,17 @@ void ProcessFiles() {
 
         ProcessFile(inputFile, outputFile);
 
+        inputFile.close();
+        outputFile.close();
+
     }
 
 }
 
 void ProcessFile(ifstream& in,ofstream& out) {
     string json;
-    int minAge;
-    int maxAge;
+    int minAge = INT_MIN;
+    int maxAge = INT_MAX;
     int ageCount = 0;
     double aveAge;
     double totalAge = 0.0;
@@ -89,7 +92,7 @@ void ProcessFile(ifstream& in,ofstream& out) {
         string personAge = GetAge(age);
         string csv;
         csv = FormatAsCSV(json);
-        int stringAgeToInt = atoi(age.c_str());
+        int stringAgeToInt = atoi (personAge.c_str());
 
         if (stringAgeToInt > maxAge) {
 
