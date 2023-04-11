@@ -29,10 +29,7 @@ using std :: ofstream;
 // Returns:
 //      nothing
 
-void ProcessFile() {
-
-
-}
+void ProcessFile(ifstream& in,ofstream& out);
 
 void ProcessFiles() {
     string inputFileName;
@@ -40,12 +37,15 @@ void ProcessFiles() {
     bool inputDone = false;
 
     while (!inputDone) {
+        char period = '.';
+        int foundPeriod = inputFileName.find(period);
         cout << "Input File Name: ";
         getline(cin, inputFileName);
+
+
         if (inputFileName == "") {
             break;
         }
-
 
 
         cout << "Output File Name: "  ;
@@ -68,18 +68,45 @@ void ProcessFiles() {
             continue;
         }
 
-
-
-
-
+        ProcessFile(inputFile, outputFile);
 
     }
 
-
-
-
-
 }
 
+void ProcessFile(ifstream& in,ofstream& out) {
+    string json;
+    int minAge;
+    int maxAge;
+    int ageCount = 0;
+    double aveAge;
+    double totalAge = 0.0;
 
 
+
+    while (getline(in, json)) {
+        string age;
+        string personAge = GetAge(age);
+        string csv;
+        csv = FormatAsCSV(json);
+        int stringAgeToInt = atoi(age.c_str());
+
+        if (stringAgeToInt > maxAge) {
+
+            maxAge = stringAgeToInt;
+        }
+
+        if (stringAgeToInt < minAge) {
+            minAge = stringAgeToInt;
+        }
+        ageCount ++;
+        totalAge = totalAge + stringAgeToInt;
+        aveAge = totalAge / ageCount;
+
+    }
+
+    aveAge = totalAge / ageCount;
+    cout << "Minimum age: " << minAge << endl;
+    cout << "Maximum age: " << maxAge << endl;
+    cout << "Average age: " << aveAge << endl;
+}
