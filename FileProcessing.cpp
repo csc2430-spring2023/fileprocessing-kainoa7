@@ -79,17 +79,18 @@ void ProcessFiles() {
 
 void ProcessFile(ifstream& in,ofstream& out) {
     string json;
-    int minAge = INT_MIN;
-    int maxAge = INT_MAX;
+    int minAge = INT_MAX;
+    int maxAge = INT_MIN;
     int ageCount = 0;
     double aveAge;
     double totalAge = 0.0;
-
+    int firstNum;
+    int tempNum;
 
 
     while (getline(in, json)) {
-        string age;
-        string personAge = GetAge(age);
+
+        string personAge = GetAge(json);
         int stringAgeToInt = atoi(personAge.c_str());
 
         if (stringAgeToInt >= 0) {
@@ -109,6 +110,7 @@ void ProcessFile(ifstream& in,ofstream& out) {
     in.close();
 
     aveAge = totalAge / ageCount;
+
     cout << "Minimum age: " << minAge << endl;
     cout << "Maximum age: " << maxAge << endl;
     cout << "Average age: " << aveAge << endl;

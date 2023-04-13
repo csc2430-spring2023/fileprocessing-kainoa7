@@ -185,8 +185,8 @@ string GetAge(string json) {
     size_t found = json.find(age);
 
     if (found!=std::string::npos) {
-        for (int i = found; i < length; i++){
-            if (!isdigit(json.at(i))) {
+        for (int i = found + 5; i < length; i++){
+            if (!isdigit(json.at(i)) && json.at(i) != ',') {
                 continue;
             }
 
