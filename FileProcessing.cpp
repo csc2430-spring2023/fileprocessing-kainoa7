@@ -1,9 +1,9 @@
 // Title: Lab 1 - FileProcessing.cpp
 //
-// Purpose: **<state your purpose here>
+// Purpose: **Get the input of json file and output in csv format. finding the minimum, maximum, and average age
 //
 // Class: CSC 2430 Winter 2022
-// Author: **<your name goes here>
+// Author: **Kainoa Aqui
 
 #include <cassert>
 #include "Formatting.h"
@@ -37,16 +37,33 @@ void ProcessFiles() {
     bool inputDone = false;
 
     while (!inputDone) {
-        char period = '.';
-        int foundPeriod = inputFileName.find(period);
         cout << "Input File Name: ";
         getline(cin, inputFileName);
+        char period = '.';
+        int foundPeriod = inputFileName.find(period);
+        string findJson = "json";
+        int foundJson = inputFileName.find(findJson);
 
 
         if (inputFileName == "") {
             break;
         }
 
+        // breaks if blank entered
+
+        if (foundPeriod == string::npos) {
+            cout << "ERROR: " << inputFileName << " not found" << endl;
+            continue;
+        }
+
+        // error message if no period is found
+
+        if (foundPeriod != string::npos && foundJson == string::npos) {
+            cout << "ERROR: Incorrect file format, please provide a JSON file" << endl;
+            continue;
+        }
+
+        // error if period found but not in json format
 
         cout << "Output File Name: "  ;
         getline(cin, outputFileName);
@@ -58,7 +75,7 @@ void ProcessFiles() {
             cout << "Could not open file: " << inputFileName;
             cout << endl;
             continue;
-
+            // checks if file exists
         }
 
         ofstream outputFile(outputFileName);
@@ -95,21 +112,20 @@ void ProcessFile(ifstream& in,ofstream& out) {
 
         if (stringAgeToInt >= 0) {
             totalAge = totalAge + stringAgeToInt;
-            ageCount++;
+            ageCount++; // stores these values to calculate average
 
             if (stringAgeToInt > maxAge) {
-
-                maxAge = stringAgeToInt;
+                maxAge = stringAgeToInt;  // finding maximum age
             }
 
             if (stringAgeToInt < minAge) {
-                minAge = stringAgeToInt;
+                minAge = stringAgeToInt; // finding minimum age
             }
         }
     }
     in.close();
 
-    aveAge = totalAge / ageCount;
+    aveAge = totalAge / ageCount; // calculates average age
 
     cout << "Minimum age: " << minAge << endl;
     cout << "Maximum age: " << maxAge << endl;

@@ -1,6 +1,6 @@
 // Title: Lab 1 - Formatting.cpp
 //
-// Purpose: **<state your purpose here>
+// Purpose: **Format from json to csv format. also, finding just the age of individual in the GetAge function.
 //
 // Class: CSC 2430 Winter 2022
 // Author: **Kainoa Aqui
@@ -23,7 +23,7 @@ using std :: endl;
 //      CSV header
 string CSVHeader() {
 
-string header = "firstName, lastName, Age, Height, Nationality";
+string header = "firstName, lastName, Age, Height, Nationality"; //json format
     return header;
 }
 
@@ -65,9 +65,8 @@ string FormatAsCSV(string json) {
 
     if (!foundFirst) {
         firstName = "";
-    } //*above code: this finds the first name and stores it into a string. returns blank if not found.
-
-// Pick up from here: do the same thing for lastName, age, and nationality as I did for the code above *checkpoint
+    }
+    //*above code: this finds the first name and stores it into a string. returns blank if not found.
 
     string lName = "LastName";
     size_t foundLast = json.find(lName);
@@ -200,3 +199,5 @@ string GetAge(string json) {
 
     return personAge;
 }
+// above code starts at the index where Age is found and adds 5 to it where the age begins. the code loops, storing
+// --> the integer values and breaks once it reaches a comma
