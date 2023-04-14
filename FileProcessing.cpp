@@ -105,7 +105,7 @@ void ProcessFile(ifstream& in,ofstream& out) {
     while (getline(in, json)) {
 
         string personAge = GetAge(json);
-        int stringAgeToInt = atoi(personAge.c_str());
+        int stringAgeToInt = atoi(personAge.c_str()); // changes string to integer
 
         if (stringAgeToInt >= 0) {
             totalAge = totalAge + stringAgeToInt;
