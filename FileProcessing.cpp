@@ -101,9 +101,6 @@ void ProcessFile(ifstream& in,ofstream& out) {
     int ageCount = 0;
     double aveAge;
     double totalAge = 0.0;
-    int firstNum;
-    int tempNum;
-
 
     while (getline(in, json)) {
 
@@ -123,7 +120,9 @@ void ProcessFile(ifstream& in,ofstream& out) {
             }
         }
     }
+
     in.close();
+
 
     aveAge = totalAge / ageCount; // calculates average age
 
